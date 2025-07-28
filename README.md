@@ -86,3 +86,36 @@ Enter choice: 4
 Current Patient Queue:
 [ID:11 | Name:Ari | Age:30] -> END
 ```
+
+## New Updated Changes in HM_adv.cpp
+
+### Extended Patient Information
+
+The patient node now includes extra fields to capture more comprehensive patient details:
+
+- Gender
+- Contact Number
+- Blood Group
+- Doctor Assigned
+
+### Updated Features
+
+- Add patients with full details: ID, Name, Age, Gender, Contact Number, Blood Group, and Doctor Assigned.
+- Display and search show all patient information.
+- Update patient details including the new fields.
+- Inputs for all patient fields use simple `cin` extraction (note that only single-word inputs can be handled with this approach).
+
+### Updated Patient Node Structure
+
+```cpp
+struct Node {
+    int patientid;
+    string patientname;
+    int patientage;
+    string gender;
+    string contactnumber;
+    string bloodgroup;
+    string doctorassigned;
+    Node* next;
+};
+```
