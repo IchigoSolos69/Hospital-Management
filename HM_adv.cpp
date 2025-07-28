@@ -6,13 +6,13 @@ struct Node {
     string patientname;
     int patientage;
     string gender;
-    string contactnumber;
+    long contactnumber;
     string bloodgroup;
     string doctorassigned;
     Node* next;
 };
 
-Node* CreatePatient(int id, const string& name, int age, const string& gender, const string& contact, const string& blood, const string& doctor) {
+Node* CreatePatient(int id, string name, int age, string gender, long contact, string blood, string doctor) {
     Node* patient = new Node;
     patient->patientid = id;
     patient->patientname = name;
@@ -25,7 +25,7 @@ Node* CreatePatient(int id, const string& name, int age, const string& gender, c
     return patient;
 }
 
-Node* InsertPatientAtEnd(Node* Head, int id, const string& name, int age, const string& gender, const string& contact, const string& blood, const string& doctor) {
+Node* InsertPatientAtEnd(Node* Head, int id,  string name, int age,  string gender,  long contact,  string blood,  string doctor) {
     Node* newPatient = CreatePatient(id, name, age, gender, contact, blood, doctor);
     if (Head == nullptr) {
         return newPatient;
@@ -124,24 +124,22 @@ void UpdatePatient(Node* Head, int id) {
         return;
     }
     cout << "Enter new name (current: " << patient->patientname << "): ";
-    cin.ignore(); // clear leftover newline
-    getline(cin, patient->patientname);
+    cin >> patient->patientname;
 
     cout << "Enter new age (current: " << patient->patientage << "): ";
     cin >> patient->patientage;
-    cin.ignore();
 
     cout << "Enter new gender (current: " << patient->gender << "): ";
-    getline(cin, patient->gender);
+    cin >> patient->gender;
 
     cout << "Enter new contact number (current: " << patient->contactnumber << "): ";
-    getline(cin, patient->contactnumber);
+    cin >> patient->contactnumber;
 
     cout << "Enter new blood group (current: " << patient->bloodgroup << "): ";
-    getline(cin, patient->bloodgroup);
+    cin >> patient->bloodgroup;
 
     cout << "Enter new doctor assigned (current: " << patient->doctorassigned << "): ";
-    getline(cin, patient->doctorassigned);
+    cin >> patient->doctorassigned;
 
     cout << "Patient info updated.\n";
 }
@@ -150,7 +148,8 @@ int main() {
     Node* Head = nullptr;
 
     int choice, id, age;
-    string name, gender, contact, blood, doctor;
+    string name, gender, blood, doctor;
+    long contact;
 
     while (true) {
         cout << "\n----- Menu -----\n";
@@ -168,20 +167,18 @@ int main() {
             case 1:
                 cout << "Patient ID: ";
                 cin >> id;
-                cin.ignore();
                 cout << "Name: ";
-                getline(cin, name);
+                cin >> name;
                 cout << "Age: ";
                 cin >> age;
-                cin.ignore();
-                cout << "Gender: ";
-                getline(cin, gender);
+                cout << "Gender: (Male / Female): ";
+                cin >> gender;
                 cout << "Contact Number: ";
-                getline(cin, contact);
+                cin >> contact;
                 cout << "Blood Group: ";
-                getline(cin, blood);
+                cin >> blood;
                 cout << "Doctor Assigned: ";
-                getline(cin, doctor);
+                cin >> doctor;
 
                 Head = InsertPatientAtEnd(Head, id, name, age, gender, contact, blood, doctor);
                 break;
